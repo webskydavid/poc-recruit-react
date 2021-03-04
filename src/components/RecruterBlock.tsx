@@ -1,6 +1,6 @@
-import React, { FC } from "react";
-import "./RecruterBlock.css";
-import { IRecruter } from "../models/data";
+import React, { FC } from 'react';
+import './RecruterBlock.css';
+import { IRecruter } from '../models/data';
 
 interface Props {
   title: string;
@@ -10,9 +10,7 @@ interface Props {
 const RecruterBlock: FC<Props> = ({ title, data }) => {
   return (
     <div className="recruterBlock">
-      <h4>
-        {title} <button>Edit</button>
-      </h4>
+      <h4>{title}</h4>
       <div className="recruterBlock__row">
         <div>Recruter</div>
         <div>{data.name}</div>

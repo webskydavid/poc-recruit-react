@@ -1,5 +1,5 @@
-import React, { FC } from "react";
-import "./RecruterBlock.css";
+import React, { FC } from 'react';
+import './RecruterBlock.css';
 
 interface Props {
   title: string;
@@ -8,12 +8,10 @@ interface Props {
 
 const TechStackBlock: FC<Props> = ({ title, data }) => {
   return (
-    <div className="recruterBlock">
-      <h4>
-        {title} <button>Edit</button>
-      </h4>
+    <div>
+      <h4>{title}</h4>
       {data.map((tech) => (
-        <button>{tech}</button>
+        <button key={tech}>{tech}</button>
       ))}
     </div>
   );

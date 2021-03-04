@@ -37,52 +37,52 @@ export interface IRecruitment {
 
 const data = [
   {
-    id: "1",
+    id: '1',
     recruter: {
-      name: "Foo",
-      contact: "foo@gmail.com",
+      name: 'Foo',
+      contact: 'foo@gmail.com',
       steps: [
-        { type: "FIRST_TALK", when: "20.03.2021 14:00" },
-        { type: "TECH_TALK", when: "20.03.2021 14:00" },
-        { type: "FINAL_TALK", when: "20.03.2021 14:00" }
+        { type: 'FIRST_TALK', when: '20.03.2021 14:00' },
+        { type: 'TECH_TALK', when: '20.03.2021 14:00' },
+        { type: 'FINAL_TALK', when: '20.03.2021 14:00' }
       ]
     },
     company: {
-      name: "Foo inc.",
-      contact: "fooinc@oo.com",
-      offer_link: "www.offer.com",
-      website: "www.fooinc.com"
+      name: 'Foo inc.',
+      contact: 'fooinc@oo.com',
+      offer_link: 'www.offer.com',
+      website: 'www.fooinc.com'
     },
-    tech_stack: ["REACT", "JAVASCRIPT", "NODE"],
+    tech_stack: ['REACT', 'JAVASCRIPT', 'NODE', 'DART', 'FLUTTER'],
     salary: [
-      { from: 15000, to: 18000, type: "GROSS" },
-      { from: 17000, to: 22000, type: "NET" }
+      { from: 15000, to: 18000, type: 'GROSS' },
+      { from: 17000, to: 22000, type: 'NET' }
     ],
-    benefits: [{ name: "Car" }, { name: "INSURANCE" }]
+    benefits: [{ name: 'Car' }, { name: 'INSURANCE' }]
   },
   {
-    id: "2",
+    id: '2',
     recruter: {
-      name: "Foo",
-      contact: "foo@gmail.com",
+      name: 'Foo',
+      contact: 'foo@gmail.com',
       steps: [
-        { type: "FIRST_TALK", when: "20.03.2021 14:00" },
-        { type: "TECH_TALK", when: "20.03.2021 14:00" },
-        { type: "FINAL_TALK", when: "20.03.2021 14:00" }
+        { type: 'FIRST_TALK', when: '20.03.2021 14:00' },
+        { type: 'TECH_TALK', when: '20.03.2021 14:00' },
+        { type: 'FINAL_TALK', when: '20.03.2021 14:00' }
       ]
     },
     company: {
-      name: "Foo inc.",
-      contact: "fooinc@oo.com",
-      offer_link: "www.offer.com",
-      website: "www.fooinc.com"
+      name: 'Foo inc.',
+      contact: 'fooinc@oo.com',
+      offer_link: 'www.offer.com',
+      website: 'www.fooinc.com'
     },
-    tech_stack: ["REACT", "JAVASCRIPT", "NODE"],
+    tech_stack: ['REACT', 'JAVASCRIPT', 'NODE'],
     salary: [
-      { from: 15000, to: 18000, type: "GROSS" },
-      { from: 17000, to: 22000, type: "NET" }
+      { from: 15000, to: 18000, type: 'GROSS' },
+      { from: 17000, to: 22000, type: 'NET' }
     ],
-    benefits: [{ name: "Car" }, { name: "INSURANCE" }]
+    benefits: [{ name: 'Car' }, { name: 'INSURANCE' }]
   }
 ];
 
