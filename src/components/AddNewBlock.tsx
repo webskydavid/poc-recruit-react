@@ -1,6 +1,7 @@
 import { Formik, Form, Field, FieldArray } from 'formik';
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import { IRecruter, ICompany, ISalary, IBenefit } from '../models/data';
+import './form.css';
 
 interface Values {
   recruter: IRecruter;
@@ -39,69 +40,78 @@ const AddNewBlock: FC = () => {
         {({ values, ...rest }) => {
           return (
             <Form>
-              <div>
-                <label htmlFor="name">Imię i nazwisko</label>
-                <Field name="recruter.name" />
-              </div>
-              <div>
-                <label htmlFor="name">Kontakt</label>
-                <Field name="recruter.contact" />
-              </div>
-              <FieldArray name="recruter.steps">
-                {({ push, remove }) => {
-                  return (
-                    <div>
-                      <button
-                        type="button"
-                        onClick={() => push({ type: '', when: '' })}
-                      >
-                        Add step
-                      </button>
-                      {values.recruter.steps.map((step, index) => (
-                        <>
-                          <div>
-                            <label htmlFor="name">Typ</label>
-                            <Field name={`recruter.steps.${index}.type`} />
-                          </div>
-                          <div>
-                            <label htmlFor="name">Kiedy</label>
-                            <Field name={`recruter.steps.${index}.when`} />
-                          </div>
-                          <button type="button" onClick={() => remove(index)}>
-                            X
+              <div className="form__set">
+                <div className="form__field">
+                  <h3>eofjeof</h3>
+                </div>
+                <div className="form__field">
+                  <label htmlFor="name">Imię i nazwisko</label>
+                  <Field name="recruter.name" />
+                </div>
+                <div className="form__field">
+                  <label htmlFor="name">Kontakt</label>
+                  <Field name="recruter.contact" />
+                </div>
+                <FieldArray name="recruter.steps">
+                  {({ push, remove }) => {
+                    const fields = values.recruter.steps.map((step, index) => (
+                      <>
+                        <div className="form__field">
+                          <label htmlFor="name">
+                            Typ{' '}
+                            <button type="button" onClick={() => remove(index)}>
+                              X
+                            </button>
+                          </label>
+                          <Field name={`recruter.steps.${index}.type`} />
+                        </div>
+                        <div className="form__field">
+                          <label htmlFor="name">Kiedy</label>
+                          <Field name={`recruter.steps.${index}.when`} />
+                        </div>
+                      </>
+                    ));
+
+                    return (
+                      <>
+                        <div className="form__field">
+                          <button
+                            type="button"
+                            onClick={() => push({ type: '', when: '' })}
+                          >
+                            Add step
                           </button>
-                        </>
-                      ))}
-                    </div>
-                  );
-                }}
-              </FieldArray>
-
-              <hr />
-
-              <div>
-                <label htmlFor="name">Firma</label>
-                <Field name="company.name" />
-              </div>
-              <div>
-                <label htmlFor="name">Kontakt</label>
-                <Field name="company.contact" />
-              </div>
-              <div>
-                <label htmlFor="name">Link to oferty</label>
-                <Field name="company.offer_link" />
-              </div>
-              <div>
-                <label htmlFor="name">Strona firmy</label>
-                <Field name="company.website" />
+                        </div>
+                        {fields}
+                      </>
+                    );
+                  }}
+                </FieldArray>
               </div>
 
-              <hr />
+              <div className="form__set">
+                <div>
+                  <label htmlFor="name">Firma</label>
+                  <Field name="company.name" />
+                </div>
+                <div>
+                  <label htmlFor="name">Kontakt</label>
+                  <Field name="company.contact" />
+                </div>
+                <div>
+                  <label htmlFor="name">Link to oferty</label>
+                  <Field name="company.offer_link" />
+                </div>
+                <div>
+                  <label htmlFor="name">Strona firmy</label>
+                  <Field name="company.website" />
+                </div>
+              </div>
 
               <FieldArray name="tech_stack">
                 {({ push, remove }) => {
                   return (
-                    <div>
+                    <div className="form__set">
                       <button type="button" onClick={() => push('')}>
                         Add tech
                       </button>
@@ -121,12 +131,10 @@ const AddNewBlock: FC = () => {
                 }}
               </FieldArray>
 
-              <hr />
-
               <FieldArray name="salary">
                 {({ push, remove }) => {
                   return (
-                    <div>
+                    <div className="form__set">
                       <button
                         type="button"
                         onClick={() => push({ from: 0, to: 0, type: '' })}
@@ -157,12 +165,10 @@ const AddNewBlock: FC = () => {
                 }}
               </FieldArray>
 
-              <hr />
-
               <FieldArray name="benefits">
                 {({ push, remove }) => {
                   return (
-                    <div>
+                    <div className="form__set">
                       <button type="button" onClick={() => push({ name: '' })}>
                         Add salary
                       </button>
@@ -182,7 +188,9 @@ const AddNewBlock: FC = () => {
                   );
                 }}
               </FieldArray>
-              <button type="submit">Submit</button>
+              <div className="form__set">
+                <button type="submit">Submit</button>
+              </div>
             </Form>
           );
         }}

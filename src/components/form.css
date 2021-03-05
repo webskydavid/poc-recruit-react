@@ -1,2 +1,20 @@
-.form {
+.form > form {
+  display: grid;
+  grid-auto-flow: row;
+  justify-items: baseline;
+}
+
+.form__set {
+  display: grid;
+  grid-template-columns: repeat(4, min-content);
+}
+
+.form__field {
+  display: grid;
+  justify-items: baseline;
+}
+
+.form__fieldset {
+  display: grid;
+  grid-template-columns: auto;
 }
