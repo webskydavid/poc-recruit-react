@@ -4,17 +4,27 @@
   justify-items: baseline;
 }
 
+.form__header {
+  margin-top: 20px;
+}
+
 .form__set {
   display: grid;
   grid-template-columns: repeat(4, min-content);
-}
-
-.form__field {
-  display: grid;
-  justify-items: baseline;
+  gap: 8px;
 }
 
 .form__fieldset {
   display: grid;
   grid-template-columns: auto;
+}
+
+.form__field {
+  display: grid;
+  justify-items: baseline;
+  align-content: flex-end;
+}
+
+.form__field > label {
+  font-size: 10px;
 }
