@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import './RecruterBlock.css';
+import './block.css';
 
 interface Props {
   title: string;

@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import './RecruterBlock.css';
+import './block.css';
 import { ICompany } from '../models/data';
 
 interface Props {
@@ -9,21 +9,21 @@ interface Props {
 
 const CompanyBlock: FC<Props> = ({ title, data }) => {
   return (
-    <div className="recruterBlock">
+    <div className="block">
       <h4>{title}</h4>
-      <div className="recruterBlock__row">
+      <div className="block__row">
         <div>Firma</div>
         <div>{data.name}</div>
       </div>
-      <div className="recruterBlock__row">
+      <div className="block__row">
         <div>Kontakt</div>
         <div>{data.contact}</div>
       </div>
-      <div className="recruterBlock__row">
+      <div className="block__row">
         <div>Link do oferty</div>
         <div>{data.offer_link}</div>
       </div>
-      <div className="recruterBlock__row">
+      <div className="block__row">
         <div>Link do strony</div>
         <div>{data.website}</div>
       </div>

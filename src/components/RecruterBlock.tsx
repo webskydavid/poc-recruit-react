@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import './RecruterBlock.css';
+import './block.css';
 import { IRecruter } from '../models/data';
 
 interface Props {
@@ -9,20 +9,20 @@ interface Props {
 
 const RecruterBlock: FC<Props> = ({ title, data }) => {
   return (
-    <div className="recruterBlock">
+    <div className="block">
       <h4>{title}</h4>
-      <div className="recruterBlock__row">
+      <div className="block__row">
         <div>Recruter</div>
         <div>{data.name}</div>
       </div>
-      <div className="recruterBlock__row">
+      <div className="block__row">
         <div>Kontakt</div>
         <div>{data.contact}</div>
       </div>
-      <div className="recruterBlock__row">
+      <div className="block__row">
         <div>Kroki</div>
         {data.steps.map((step) => (
-          <div key={step.type} className="recruterBlock__steps">
+          <div key={step.type} className="block__steps">
             <div>{step.type}</div>
             <div>{step.when}</div>
           </div>
