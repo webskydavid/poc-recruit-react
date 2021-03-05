@@ -1,2 +1,3 @@
 # poc-recruit-react
-Created with CodeSandbox
+
+PoC application that is supposed to record the current recruitments in which you are participating.
