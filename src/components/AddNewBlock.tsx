@@ -1,6 +1,8 @@
 import { Formik, Form, Field, FieldArray } from 'formik';
 import { FC } from 'react';
+import { useSetRecoilState } from 'recoil';
 import { IRecruter, ICompany, ISalary, IBenefit } from '../models/data';
+import { LocalStorageProvider, recruitmentList } from '../models/mockData';
 import './form.css';
 
 interface Values {
@@ -12,8 +14,14 @@ interface Values {
 }
 
 const AddNewBlock: FC = () => {
-  const handleSubmit = (values: Values) => {
-    console.log(values);
+  const setRecrutiment = useSetRecoilState(recruitmentList);
+
+  const handleSubmit = (values: any) => {
+    setRecrutiment((rec) => {
+      const data = [...rec, { ...values, id: Date.now() }];
+      LocalStorageProvider.write('recruitmentList', data);
+      return data;
+    });
   };
 
   return (
