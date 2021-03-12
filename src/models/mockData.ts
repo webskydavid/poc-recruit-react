@@ -1,37 +1,47 @@
-import { atom, selector } from "recoil";
-import { IRecruitment, mockData } from "./data";
+import { atom, selector } from 'recoil';
+import { ICompany, IRecruitment, mockData } from './data';
 
 export class LocalStorageProvider {
-    static read = (key: string) => {
-        
-        if(localStorage.getItem(key) === null){
-            LocalStorageProvider.write(key, '');
-        }
-
-        return JSON.parse(localStorage.getItem(key) || '[]');
+  static read = (key: string) => {
+    if (localStorage.getItem(key) === null) {
+      LocalStorageProvider.write(key, '');
     }
 
-    static write = (key: string, values: any) => {
-        localStorage.setItem(key, JSON.stringify(values));
-    }
+    return JSON.parse(localStorage.getItem(key) || '[]');
+  };
 
-    static remove = (key: string) => {
-        localStorage.removeItem(key);
-    }
+  static write = (key: string, values: any) => {
+    localStorage.setItem(key, JSON.stringify(values));
+  };
 
-    static clear = (key: string) => {
-        localStorage.clear();
-    }
+  static remove = (key: string) => {
+    localStorage.removeItem(key);
+  };
+
+  static clear = (key: string) => {
+    localStorage.clear();
+  };
 }
 
-export const recruitmentList = atom<IRecruitment[]>({
-    key: 'recruitmentList',
-    default: selector({
-        key: 'recruitmentList/default',
-        get: () => {
-            return LocalStorageProvider.read('recruitmentList');
-        }
-    })
+export const RECRUITMENT_KEY = 'recruitmentList';
+export const COMPANY_KEY = 'recruitmentList';
 
-  });
+export const recruitments = atom<IRecruitment[]>({
+  key: RECRUITMENT_KEY,
+  default: selector({
+    key: `${RECRUITMENT_KEY}/default`,
+    get: () => {
+      return LocalStorageProvider.read(RECRUITMENT_KEY);
+    }
+  })
+});
 
+export const companies = atom<ICompany[]>({
+  key: COMPANY_KEY,
+  default: selector({
+    key: `${COMPANY_KEY}/default`,
+    get: () => {
+      return LocalStorageProvider.read(COMPANY_KEY);
+    }
+  })
+});
