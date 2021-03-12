@@ -3,7 +3,7 @@ import { FC } from 'react';
 import { useHistory } from 'react-router';
 import { useSetRecoilState } from 'recoil';
 import { IRecruter, ICompany, ISalary, IBenefit } from '../../models/data';
-import { LocalStorageProvider, recruitmentList } from '../../models/mockData';
+import { LocalStorageProvider, recruitments } from '../../models/mockData';
 import './form.css';
 
 interface Values {
@@ -16,7 +16,7 @@ interface Values {
 
 const AddNewBlock: FC = () => {
   const history = useHistory();
-  const setRecrutiment = useSetRecoilState(recruitmentList);
+  const setRecrutiment = useSetRecoilState(recruitments);
 
   const handleSubmit = (values: any) => {
     console.log('Log: [values]', values);
@@ -34,9 +34,9 @@ const AddNewBlock: FC = () => {
         initialValues={{
           recruter: {
             name: '',
-            contact: '',
-            steps: []
+            contact: ''
           },
+          steps: [],
           company: {
             name: '',
             contact: '',
@@ -64,17 +64,37 @@ const AddNewBlock: FC = () => {
                 </div>
               </div>
 
-              <FieldArray name="recruter.steps">
+              <h3 className="form__header">Firma</h3>
+              <div className="form__set">
+                <div className="form__field">
+                  <label htmlFor="name">Firma</label>
+                  <Field name="company.name" />
+                </div>
+                <div className="form__field">
+                  <label htmlFor="name">Kontakt</label>
+                  <Field name="company.contact" />
+                </div>
+                <div className="form__field">
+                  <label htmlFor="name">Strona firmy</label>
+                  <Field name="company.website" />
+                </div>
+                <div className="form__field">
+                  <label htmlFor="name">Link to oferty</label>
+                  <Field name="offer_link" />
+                </div>
+              </div>
+
+              <FieldArray name="steps">
                 {({ push, remove }) => {
-                  const fields = values.recruter.steps.map((step, index) => (
+                  const fields = values.steps.map((step, index) => (
                     <div className="form__set">
                       <div className="form__field">
                         <label htmlFor="name">Typ</label>
-                        <Field name={`recruter.steps.${index}.type`} />
+                        <Field name={`steps.${index}.type`} />
                       </div>
                       <div className="form__field">
                         <label htmlFor="name">Kiedy</label>
-                        <Field name={`recruter.steps.${index}.when`} />
+                        <Field name={`steps.${index}.when`} />
                       </div>
                       <div className="form__field">
                         <button type="button" onClick={() => remove(index)}>
@@ -100,26 +120,6 @@ const AddNewBlock: FC = () => {
                   );
                 }}
               </FieldArray>
-
-              <h3 className="form__header">Firma</h3>
-              <div className="form__set">
-                <div className="form__field">
-                  <label htmlFor="name">Firma</label>
-                  <Field name="company.name" />
-                </div>
-                <div className="form__field">
-                  <label htmlFor="name">Kontakt</label>
-                  <Field name="company.contact" />
-                </div>
-                <div className="form__field">
-                  <label htmlFor="name">Link to oferty</label>
-                  <Field name="company.offer_link" />
-                </div>
-                <div className="form__field">
-                  <label htmlFor="name">Strona firmy</label>
-                  <Field name="company.website" />
-                </div>
-              </div>
 
               <FieldArray name="tech_stack">
                 {({ push, remove }) => {
@@ -167,7 +167,7 @@ const AddNewBlock: FC = () => {
                               contractType: 'B2B',
                               from: 0,
                               to: 0,
-                              type: ''
+                              type: 'NET'
                             })
                           }
                         >
@@ -198,8 +198,13 @@ const AddNewBlock: FC = () => {
                               <Field name={`salary.${index}.to`} />
                             </div>
                             <div className="form__field">
-                              <label htmlFor="name">Typ</label>
-                              <Field name={`salary.${index}.type`} />
+                              <label htmlFor={`salary.${index}.type`}>
+                                Typ
+                              </label>
+                              <Field as="select" name={`salary.${index}.type`}>
+                                <option value="NET">Netto</option>
+                                <option value="GROSS">Brutto</option>
+                              </Field>
                             </div>
                             <div className="form__field">
                               <button

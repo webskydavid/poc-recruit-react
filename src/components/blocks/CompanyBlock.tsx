@@ -20,10 +20,6 @@ const CompanyBlock: FC<Props> = ({ title, data }) => {
         <div>{data.contact}</div>
       </div>
       <div className="block__row">
-        <div>Link do oferty</div>
-        <div>{data.offer_link}</div>
-      </div>
-      <div className="block__row">
         <div>Link do strony</div>
         <div>{data.website}</div>
       </div>

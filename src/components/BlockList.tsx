@@ -5,11 +5,13 @@ import CompanyBlock from './blocks/CompanyBlock';
 import TechStackBlock from './blocks/TechStackBlock';
 import { Link } from 'react-router-dom';
 import { useRecoilStateLoadable } from 'recoil';
-import { LocalStorageProvider, recruitmentList } from './../models/mockData';
+import { LocalStorageProvider, recruitments } from './../models/mockData';
 import BenefitsBlock from './blocks/BenefitsBlock';
+import SalaryBlock from './blocks/SalaryBlock';
+import StepsBlock from './blocks/StepsBlock';
 
 const BlockList: FC = () => {
-  const [list, setRecrutiment] = useRecoilStateLoadable(recruitmentList);
+  const [list, setRecrutiment] = useRecoilStateLoadable(recruitments);
 
   const handleRemove = (id: string) => {
     setRecrutiment((rec) => {
@@ -35,11 +37,20 @@ const BlockList: FC = () => {
                     <button onClick={() => handleRemove(recruitment.id)}>
                       Usuń
                     </button>
+                    <div className="block__row">
+                      <div>Link do oferty</div>
+                      <div>{recruitment.offer_link}</div>
+                    </div>
                     <RecruterBlock
                       title="Kto rekrutuje"
                       data={recruitment.recruter}
                     />
                     <CompanyBlock title="Firma" data={recruitment.company} />
+                    <StepsBlock
+                      title="Kroki rekrutacji"
+                      data={recruitment.steps}
+                    />
+                    <SalaryBlock title="Płaca" data={recruitment.salary} />
                     <TechStackBlock
                       title="Stack technologiczny"
                       data={recruitment.tech_stack}

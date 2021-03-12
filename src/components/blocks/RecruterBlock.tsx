@@ -19,15 +19,6 @@ const RecruterBlock: FC<Props> = ({ title, data }) => {
         <div>Kontakt</div>
         <div>{data.contact}</div>
       </div>
-      <div className="block__row">
-        <div>Kroki</div>
-        {data.steps.map((step) => (
-          <div key={step.type} className="block__steps">
-            <div>{step.type}</div>
-            <div>{step.when}</div>
-          </div>
-        ))}
-      </div>
     </div>
   );
 };
