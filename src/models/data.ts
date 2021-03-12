@@ -17,6 +17,7 @@ export interface ICompany {
 }
 
 export interface ISalary {
+  contractType: string;
   from: Number;
   to: Number;
   type: string;
@@ -35,7 +36,7 @@ export interface IRecruitment {
   benefits: IBenefit[];
 }
 
-const data = [
+const data: IRecruitment[] = [
   {
     id: '1',
     recruter: {
@@ -55,8 +56,8 @@ const data = [
     },
     tech_stack: ['REACT', 'JAVASCRIPT', 'NODE', 'DART', 'FLUTTER'],
     salary: [
-      { from: 15000, to: 18000, type: 'GROSS' },
-      { from: 17000, to: 22000, type: 'NET' }
+      { contractType: 'B2B', from: 15000, to: 18000, type: 'GROSS' },
+      { contractType: 'B2B', from: 17000, to: 22000, type: 'NET' }
     ],
     benefits: [{ name: 'Car' }, { name: 'INSURANCE' }]
   },
@@ -79,8 +80,8 @@ const data = [
     },
     tech_stack: ['REACT', 'JAVASCRIPT', 'NODE'],
     salary: [
-      { from: 15000, to: 18000, type: 'GROSS' },
-      { from: 17000, to: 22000, type: 'NET' }
+      { contractType: 'B2B', from: 15000, to: 18000, type: 'GROSS' },
+      { contractType: 'B2B', from: 17000, to: 22000, type: 'NET' }
     ],
     benefits: [{ name: 'Car' }, { name: 'INSURANCE' }]
   }

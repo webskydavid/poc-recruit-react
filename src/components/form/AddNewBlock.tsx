@@ -2,8 +2,8 @@ import { Formik, Form, Field, FieldArray } from 'formik';
 import { FC } from 'react';
 import { useHistory } from 'react-router';
 import { useSetRecoilState } from 'recoil';
-import { IRecruter, ICompany, ISalary, IBenefit } from '../models/data';
-import { LocalStorageProvider, recruitmentList } from '../models/mockData';
+import { IRecruter, ICompany, ISalary, IBenefit } from '../../models/data';
+import { LocalStorageProvider, recruitmentList } from '../../models/mockData';
 import './form.css';
 
 interface Values {
@@ -19,6 +19,7 @@ const AddNewBlock: FC = () => {
   const setRecrutiment = useSetRecoilState(recruitmentList);
 
   const handleSubmit = (values: any) => {
+    console.log('Log: [values]', values);
     setRecrutiment((rec) => {
       const data = [...rec, { ...values, id: Date.now() }];
       LocalStorageProvider.write('recruitmentList', data);
@@ -161,7 +162,14 @@ const AddNewBlock: FC = () => {
                         Widełki płacowe{' '}
                         <button
                           type="button"
-                          onClick={() => push({ from: 0, to: 0, type: '' })}
+                          onClick={() =>
+                            push({
+                              contractType: 'B2B',
+                              from: 0,
+                              to: 0,
+                              type: ''
+                            })
+                          }
                         >
                           Dodaj
                         </button>
@@ -169,6 +177,18 @@ const AddNewBlock: FC = () => {
                       <div className="form__set">
                         {values.salary.map((salary, index) => (
                           <>
+                            <div className="form__field">
+                              <label htmlFor="contractType">
+                                Forma zatrudnienia
+                              </label>
+                              <Field
+                                as="select"
+                                name={`salary.${index}.contractType`}
+                              >
+                                <option value="B2B">B2B</option>
+                                <option value="COE">UoP</option>
+                              </Field>
+                            </div>
                             <div className="form__field">
                               <label htmlFor="name">Od</label>
                               <Field name={`salary.${index}.from`} />

@@ -10,7 +10,7 @@
 
 .form__set {
   display: grid;
-  grid-template-columns: repeat(4, min-content);
+  grid-template-columns: repeat(5, min-content);
   gap: 8px;
 }
 

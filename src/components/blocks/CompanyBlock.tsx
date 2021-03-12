@@ -1,18 +1,18 @@
 import React, { FC } from 'react';
 import './block.css';
-import { IRecruter } from '../models/data';
+import { ICompany } from '../../models/data';
 
 interface Props {
   title: string;
-  data: IRecruter;
+  data: ICompany;
 }
 
-const RecruterBlock: FC<Props> = ({ title, data }) => {
+const CompanyBlock: FC<Props> = ({ title, data }) => {
   return (
     <div className="block">
       <h4>{title}</h4>
       <div className="block__row">
-        <div>Recruter</div>
+        <div>Firma</div>
         <div>{data.name}</div>
       </div>
       <div className="block__row">
@@ -20,16 +20,15 @@ const RecruterBlock: FC<Props> = ({ title, data }) => {
         <div>{data.contact}</div>
       </div>
       <div className="block__row">
-        <div>Kroki</div>
-        {data.steps.map((step) => (
-          <div key={step.type} className="block__steps">
-            <div>{step.type}</div>
-            <div>{step.when}</div>
-          </div>
-        ))}
+        <div>Link do oferty</div>
+        <div>{data.offer_link}</div>
+      </div>
+      <div className="block__row">
+        <div>Link do strony</div>
+        <div>{data.website}</div>
       </div>
     </div>
   );
 };
 
-export default RecruterBlock;
+export default CompanyBlock;

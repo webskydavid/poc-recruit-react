@@ -2,7 +2,7 @@ import React from 'react';
 import './styles.css';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import BlockList from './components/BlockList';
-import AddNewBlock from './components/AddNewBlock';
+import AddNewBlock from './components/form/AddNewBlock';
 import { RecoilRoot } from 'recoil';
 
 export default function App() {

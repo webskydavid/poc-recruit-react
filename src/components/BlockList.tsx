@@ -1,21 +1,17 @@
 import { FC } from 'react';
 
-import RecruterBlock from './RecruterBlock';
-import CompanyBlock from './CompanyBlock';
-import TechStackBlock from './TechStackBlock';
+import RecruterBlock from './blocks/RecruterBlock';
+import CompanyBlock from './blocks/CompanyBlock';
+import TechStackBlock from './blocks/TechStackBlock';
 import { Link } from 'react-router-dom';
-import {
-  useRecoilStateLoadable,
-  useRecoilValueLoadable,
-  useSetRecoilState
-} from 'recoil';
+import { useRecoilStateLoadable } from 'recoil';
 import { LocalStorageProvider, recruitmentList } from './../models/mockData';
+import BenefitsBlock from './blocks/BenefitsBlock';
 
 const BlockList: FC = () => {
   const [list, setRecrutiment] = useRecoilStateLoadable(recruitmentList);
 
   const handleRemove = (id: string) => {
-    console.log(id);
     setRecrutiment((rec) => {
       const data = [...rec.filter((rec) => rec.id !== id)];
       LocalStorageProvider.write('recruitmentList', data);
@@ -47,6 +43,10 @@ const BlockList: FC = () => {
                     <TechStackBlock
                       title="Stack technologiczny"
                       data={recruitment.tech_stack}
+                    />
+                    <BenefitsBlock
+                      title={'Benefity'}
+                      data={recruitment.benefits}
                     />
                   </div>
                 );
