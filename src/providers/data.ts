@@ -12,7 +12,7 @@ const data: IRecruitment[] = [
     level: ['JUNIOR', 'REGULAR', 'SENIOR'],
     offer_link: 'www.x.pl',
     note: 'Lorem ipsum',
-    recruter: {
+    recruiter: {
       id: '1',
       name: 'Foo',
       contact: 'foo@gmail.com',

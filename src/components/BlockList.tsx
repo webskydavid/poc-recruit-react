@@ -1,30 +1,27 @@
 import { FC } from 'react';
+import { Link } from 'react-router-dom';
+import { useRecoilValueLoadable, useSetRecoilState } from 'recoil';
 
 import RecruterBlock from './blocks/RecruterBlock';
 import CompanyBlock from './blocks/CompanyBlock';
 import TechStackBlock from './blocks/TechStackBlock';
-import { Link } from 'react-router-dom';
-import {
-  useRecoilStateLoadable,
-  useRecoilValue,
-  useRecoilValueLoadable
-} from 'recoil';
-import { foo, LocalStorageProvider } from '../providers/mockData';
 import BenefitsBlock from './blocks/BenefitsBlock';
 import SalaryBlock from './blocks/SalaryBlock';
 import StepsBlock from './blocks/StepsBlock';
 
+import { getRecrutiments, LocalStorageProvider } from '../providers/mockData';
+import { recruitmentState } from '../providers/recruitment';
+
 const BlockList: FC = () => {
-  //const [list, setRecrutiment] = useRecoilStateLoadable(foo);
-  const list = useRecoilValueLoadable(foo);
-  console.log(list.contents);
+  const removeRecruitment = useSetRecoilState(recruitmentState);
+  const list = useRecoilValueLoadable(getRecrutiments);
 
   const handleRemove = (id: string) => {
-    // setRecrutiment((rec) => {
-    //   const data = [...rec.filter((rec) => rec.id !== id)];
-    //   LocalStorageProvider.write('recruitmentList', data);
-    //   return data;
-    // });
+    removeRecruitment((rec) => {
+      const data = [...rec.filter((rec) => rec.id !== id)];
+      LocalStorageProvider.write('recruitmentList', data);
+      return data;
+    });
   };
 
   switch (list.state) {
@@ -49,7 +46,7 @@ const BlockList: FC = () => {
                     </div>
                     <RecruterBlock
                       title="Kto rekrutuje"
-                      data={recruitment.recruter}
+                      data={recruitment.recruiter}
                     />
                     <CompanyBlock title="Firma" data={recruitment.company} />
                     <StepsBlock
@@ -68,7 +65,7 @@ const BlockList: FC = () => {
                   </div>
                 );
               })
-            : null}
+            : 'Brak rekrutacji!'}
         </>
       );
     case 'loading':

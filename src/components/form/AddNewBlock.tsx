@@ -4,8 +4,9 @@ import { useHistory } from 'react-router';
 import { useSetRecoilState } from 'recoil';
 import { benefitState } from '../../providers/benefit';
 import { companyState } from '../../providers/company';
+import { LocalStorageProvider } from '../../providers/mockData';
 import { recruiterState } from '../../providers/recruiter';
-import { IRecruitment, recruitmentState } from '../../providers/recruitment';
+import { IRawRecruitment, recruitmentState } from '../../providers/recruitment';
 import { salaryState } from '../../providers/salaryState';
 import { stepState } from '../../providers/stepState';
 import { techStackState } from '../../providers/techStackState';
@@ -54,10 +55,19 @@ const AddNewBlock: FC = () => {
   const handleSubmit = (values: any) => {
     console.log('Log: [values]', values);
 
-    const newRec: IRecruitment = {
-      ...values,
-      id: Date.now(),
-      recruter: addValues(values.recruter, setRecruter),
+    const newRec: IRawRecruitment = {
+      id: Date.now().toString(),
+      summary: {
+        status: '',
+        note: ''
+      },
+      createDate: '',
+      updateDate: '',
+      offer_link: '',
+      note: '',
+      hardware: [],
+      level: [],
+      recruiter: addValues(values.recruiter, setRecruter),
       company: addValues(values.company, setCompany),
       benefits: addArrayOfValues(values.benefits, setBenefit),
       tech_stack: addArrayOfValues(values.tech_stack, setTechStack),
@@ -65,21 +75,19 @@ const AddNewBlock: FC = () => {
       steps: addArrayOfValues(values.salary, setStep)
     };
 
-    console.log(newRec);
-
-    // setRecrutiment((rec) => {
-    //   const data = [...rec, { ...values, id: Date.now() }];
-    //   LocalStorageProvider.write('recruitmentList', data);
-    //   return data;
-    // });
-    //history.push('/');
+    setRecrutiment((rec) => {
+      const data = [...rec, { ...newRec }];
+      LocalStorageProvider.write('recruitmentList', data);
+      return data;
+    });
+    history.push('/');
   };
 
   return (
     <div className="form">
       <Formik
         initialValues={{
-          recruter: {
+          recruiter: {
             name: '',
             contact: '',
             company: ''
@@ -104,15 +112,15 @@ const AddNewBlock: FC = () => {
               <div className="form__set">
                 <div className="form__field">
                   <label htmlFor="name">Imię i nazwisko</label>
-                  <Field name="recruter.name" />
+                  <Field name="recruiter.name" />
                 </div>
                 <div className="form__field">
                   <label htmlFor="name">Kontakt</label>
-                  <Field name="recruter.contact" />
+                  <Field name="recruiter.contact" />
                 </div>
                 <div className="form__field">
-                  <label htmlFor="recruter.company">Firma</label>
-                  <Field name="recruter.company" />
+                  <label htmlFor="recruiter.company">Firma</label>
+                  <Field name="recruiter.company" />
                 </div>
               </div>
 

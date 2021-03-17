@@ -18,7 +18,7 @@ export interface IRawRecruitment {
   level: string[];
   offer_link: string;
   note: string;
-  recruter: string;
+  recruiter: string;
   steps: string[];
   company: string;
   tech_stack: string[];
@@ -38,7 +38,7 @@ export interface IRecruitment {
   level: string[];
   offer_link: string;
   note: string;
-  recruter: IRecruiter;
+  recruiter: IRecruiter;
   steps: IStep[];
   company: ICompany;
   tech_stack: string[];
