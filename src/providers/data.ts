@@ -1,4 +1,5 @@
 export interface IRecruter {
+  id: string;
   name: string;
   contact: string;
   company: string;
@@ -6,11 +7,13 @@ export interface IRecruter {
 }
 
 export interface IStep {
+  id: string;
   type: string;
   when: string;
 }
 
 export interface ICompany {
+  id: string;
   name: string;
   contact: string;
   website: string;
@@ -29,6 +32,12 @@ export interface ISalary {
 }
 
 export interface IBenefit {
+  id: string;
+  name: string;
+}
+
+export interface ITechStack {
+  id: string;
   name: string;
 }
 
@@ -65,6 +74,7 @@ const data: IRecruitment[] = [
     offer_link: 'www.x.pl',
     note: 'Lorem ipsum',
     recruter: {
+      id: '1',
       name: 'Foo',
       contact: 'foo@gmail.com',
       company: 'figofago',
@@ -72,11 +82,12 @@ const data: IRecruitment[] = [
     },
     steps: [
       // RECRUTER_TALK, HR_TALK, TECH_TALK, MANAGER_TALK, TASK
-      { type: 'FIRST_TALK', when: '20.03.2021 14:00' },
-      { type: 'TECH_TALK', when: '20.03.2021 14:00' },
-      { type: 'FINAL_TALK', when: '20.03.2021 14:00' }
+      { id: '1', type: 'FIRST_TALK', when: '20.03.2021 14:00' },
+      { id: '1', type: 'TECH_TALK', when: '20.03.2021 14:00' },
+      { id: '1', type: 'FINAL_TALK', when: '20.03.2021 14:00' }
     ],
     company: {
+      id: '1',
       name: 'Foo inc.',
       contact: 'fooinc@oo.com',
       website: 'www.fooinc.com'
@@ -93,7 +104,10 @@ const data: IRecruitment[] = [
       },
       { id: '2', contractType: 'COE', from: 17000, to: 22000, type: 'NET' }
     ],
-    benefits: [{ name: 'Car' }, { name: 'INSURANCE' }],
+    benefits: [
+      { id: '1', name: 'Car' },
+      { id: '1', name: 'INSURANCE' }
+    ],
     hardware: ['MAC', 'WINDOWS', 'LINUX']
   }
 ];

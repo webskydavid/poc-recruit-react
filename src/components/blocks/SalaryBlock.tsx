@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { ISalary } from '../../models/data';
+import { ISalary } from '../../providers/data';
 import './block.css';
 
 interface Props {

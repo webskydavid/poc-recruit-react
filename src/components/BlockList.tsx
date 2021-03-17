@@ -4,21 +4,27 @@ import RecruterBlock from './blocks/RecruterBlock';
 import CompanyBlock from './blocks/CompanyBlock';
 import TechStackBlock from './blocks/TechStackBlock';
 import { Link } from 'react-router-dom';
-import { useRecoilStateLoadable } from 'recoil';
-import { LocalStorageProvider, recruitments } from './../models/mockData';
+import {
+  useRecoilStateLoadable,
+  useRecoilValue,
+  useRecoilValueLoadable
+} from 'recoil';
+import { foo, LocalStorageProvider } from '../providers/mockData';
 import BenefitsBlock from './blocks/BenefitsBlock';
 import SalaryBlock from './blocks/SalaryBlock';
 import StepsBlock from './blocks/StepsBlock';
 
 const BlockList: FC = () => {
-  const [list, setRecrutiment] = useRecoilStateLoadable(recruitments);
+  //const [list, setRecrutiment] = useRecoilStateLoadable(foo);
+  const list = useRecoilValueLoadable(foo);
+  console.log(list.contents);
 
   const handleRemove = (id: string) => {
-    setRecrutiment((rec) => {
-      const data = [...rec.filter((rec) => rec.id !== id)];
-      LocalStorageProvider.write('recruitmentList', data);
-      return data;
-    });
+    // setRecrutiment((rec) => {
+    //   const data = [...rec.filter((rec) => rec.id !== id)];
+    //   LocalStorageProvider.write('recruitmentList', data);
+    //   return data;
+    // });
   };
 
   switch (list.state) {
@@ -30,7 +36,7 @@ const BlockList: FC = () => {
           </Link>
 
           <h1>Rekrutacje</h1>
-          {list.contents
+          {list.contents.length
             ? list.contents.map((recruitment) => {
                 return (
                   <div className="app__blocks" key={recruitment.id}>

@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { IBenefit } from '../../models/data';
+import { IBenefit } from '../../providers/data';
 import './block.css';
 
 interface Props {

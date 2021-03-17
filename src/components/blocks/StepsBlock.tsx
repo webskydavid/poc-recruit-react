@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import './block.css';
-import { IStep } from '../../models/data';
+import { IStep } from '../../providers/data';
 
 interface Props {
   title: string;

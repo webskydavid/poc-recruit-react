@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import './block.css';
-import { IRecruter } from '../../models/data';
+import { IRecruter } from '../../providers/data';
 
 interface Props {
   title: string;

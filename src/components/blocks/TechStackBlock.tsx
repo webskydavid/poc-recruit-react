@@ -1,9 +1,10 @@
 import React, { FC } from 'react';
+import { ITechStack } from '../../providers/data';
 import './block.css';
 
 interface Props {
   title: string;
-  data: string[];
+  data: ITechStack[];
 }
 
 const TechStackBlock: FC<Props> = ({ title, data }) => {
@@ -11,7 +12,7 @@ const TechStackBlock: FC<Props> = ({ title, data }) => {
     <div>
       <h4>{title}</h4>
       {data.map((tech) => (
-        <button key={tech}>{tech}</button>
+        <button key={tech.id}>{tech.name}</button>
       ))}
     </div>
   );
