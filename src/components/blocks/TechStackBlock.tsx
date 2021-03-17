@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { ITechStack } from '../../providers/data';
+import { ITechStack } from '../../providers/techStackState';
 import './block.css';
 
 interface Props {

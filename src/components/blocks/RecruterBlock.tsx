@@ -1,10 +1,10 @@
 import React, { FC } from 'react';
+import { IRecruiter } from '../../providers/recruiter';
 import './block.css';
-import { IRecruter } from '../../providers/data';
 
 interface Props {
   title: string;
-  data: IRecruter;
+  data: IRecruiter;
 }
 
 const RecruterBlock: FC<Props> = ({ title, data }) => {

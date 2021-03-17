@@ -1,39 +1,21 @@
 import { Formik, Form, Field, FieldArray } from 'formik';
 import { FC } from 'react';
 import { useHistory } from 'react-router';
-import { SetterOrUpdater, useSetRecoilState } from 'recoil';
-import {
-  IRecruter,
-  ICompany,
-  ISalary,
-  IBenefit,
-  IRecruitment
-} from '../../providers/data';
-import {
-  benefitState,
-  companyState,
-  LocalStorageProvider,
-  recruitmentState,
-  recruterState,
-  salaryState,
-  stepState,
-  techStackState
-} from '../../providers/mockData';
+import { useSetRecoilState } from 'recoil';
+import { benefitState } from '../../providers/benefit';
+import { companyState } from '../../providers/company';
+import { recruiterState } from '../../providers/recruiter';
+import { IRecruitment, recruitmentState } from '../../providers/recruitment';
+import { salaryState } from '../../providers/salaryState';
+import { stepState } from '../../providers/stepState';
+import { techStackState } from '../../providers/techStackState';
 import './form.css';
-
-interface Values {
-  recruter: IRecruter;
-  company: ICompany;
-  tech_stack: string[];
-  salary: ISalary[];
-  benefits: IBenefit[];
-}
 
 const AddNewBlock: FC = () => {
   const history = useHistory();
   const setRecrutiment = useSetRecoilState(recruitmentState);
   const setCompany = useSetRecoilState(companyState);
-  const setRecruter = useSetRecoilState(recruterState);
+  const setRecruter = useSetRecoilState(recruiterState);
   const setBenefit = useSetRecoilState(benefitState);
   const setTechStack = useSetRecoilState(techStackState);
   const setSalary = useSetRecoilState(salaryState);

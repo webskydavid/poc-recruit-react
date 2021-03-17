@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
+import { ICompany } from '../../providers/company';
 import './block.css';
-import { ICompany } from '../../providers/data';
 
 interface Props {
   title: string;
