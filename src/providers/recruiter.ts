@@ -1,4 +1,5 @@
 import { atom, selector } from 'recoil';
+import { emptyObject, LocalStorageProvider } from './mockData';
 
 export interface IRawRecruiter {
   _ids: string[];
@@ -22,25 +23,10 @@ export const recruiterState = atom<IRawRecruiter>({
   default: selector({
     key: `${RECRUITER_KEY}/default`,
     get: () => {
-      return {
-        _ids: ['1234', '2345'],
-        _values: {
-          '1234': {
-            id: '1234',
-            name: 'Foo',
-            contact: 'foo@gmail.com',
-            company: 'figofago',
-            color: '#543938'
-          },
-          '2345': {
-            id: '2345',
-            name: 'Foo1',
-            contact: 'foo1@gmail.com',
-            company: 'figofago1',
-            color: '#543938'
-          }
-        }
-      };
+      if (!LocalStorageProvider.hasValues(RECRUITER_KEY)) {
+        LocalStorageProvider.write(RECRUITER_KEY, emptyObject);
+      }
+      return LocalStorageProvider.read(RECRUITER_KEY);
     }
   })
 });

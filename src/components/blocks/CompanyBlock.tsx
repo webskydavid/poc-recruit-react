@@ -9,21 +9,12 @@ interface Props {
 
 const CompanyBlock: FC<Props> = ({ title, data }) => {
   return (
-    <div className="block">
-      <h4>{title}</h4>
-      <div className="block__row">
-        <div>Firma</div>
-        <div>{data.name}</div>
-      </div>
-      <div className="block__row">
-        <div>Kontakt</div>
-        <div>{data.contact}</div>
-      </div>
-      <div className="block__row">
-        <div>Link do strony</div>
-        <div>{data.website}</div>
-      </div>
-    </div>
+    <>
+      <h5>{title}</h5>
+      <div>{data.name}</div>
+      <div>{data.website}</div>
+      <div>{data.contact}</div>
+    </>
   );
 };
 

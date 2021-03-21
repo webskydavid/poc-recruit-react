@@ -30,11 +30,11 @@ body {
   font-family: sans-serif;
   text-align: center;
   margin: 0 auto 0 auto;
-  max-width: 800px;
 }
 
 .app__blocks {
   display: grid;
+  grid-auto-flow: column;
   margin-bottom: 32px;
   padding: 16px;
   border: 1px solid black;

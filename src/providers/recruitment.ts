@@ -1,9 +1,11 @@
 import { atom, selector } from 'recoil';
 import { IBenefit } from './benefit';
 import { ICompany } from './company';
+import { LocalStorageProvider } from './mockData';
 import { IRecruiter } from './recruiter';
 import { ISalary } from './salaryState';
 import { IStep } from './stepState';
+import { ITechStack } from './techStackState';
 
 export const RECRUITMENT_KEY = 'recruitmentList';
 
@@ -41,7 +43,7 @@ export interface IRecruitment {
   recruiter: IRecruiter;
   steps: IStep[];
   company: ICompany;
-  tech_stack: string[];
+  tech_stack: ITechStack[];
   salary: ISalary[];
   benefits: IBenefit[];
   hardware: string[];
@@ -52,7 +54,7 @@ export const recruitmentState = atom<IRawRecruitment[]>({
   default: selector({
     key: `${RECRUITMENT_KEY}/default`,
     get: () => {
-      return [];
+      return LocalStorageProvider.read(RECRUITMENT_KEY);
     }
   })
 });

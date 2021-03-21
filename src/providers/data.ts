@@ -31,17 +31,29 @@ const data: IRecruitment[] = [
       contact: 'fooinc@oo.com',
       website: 'www.fooinc.com'
     },
-    tech_stack: ['REACT', 'JAVASCRIPT', 'NODE', 'DART', 'FLUTTER'],
+    tech_stack: [
+      { id: '1', name: 'REACT' },
+      { id: '1', name: 'JAVASCRIPT' },
+      { id: '1', name: 'NODE' }
+    ],
     salary: [
       {
         id: '1',
         contractType: 'B2B', // B2B, COE, FREELANCER, OTHER
         from: 15000,
         to: 18000,
+        currency: 'PLN',
         type: 'GROSS', // GROSS, NET
         options: { holidays: true, sickness: true }
       },
-      { id: '2', contractType: 'COE', from: 17000, to: 22000, type: 'NET' }
+      {
+        id: '2',
+        contractType: 'COE',
+        from: 17000,
+        to: 22000,
+        currency: 'USD',
+        type: 'NET'
+      }
     ],
     benefits: [
       { id: '1', name: 'Car' },

@@ -1,4 +1,5 @@
 import { atom, selector } from 'recoil';
+import { emptyObject, LocalStorageProvider } from './mockData';
 
 export interface IRawBenefit {
   _ids: string[];
@@ -19,13 +20,10 @@ export const benefitState = atom<IRawBenefit>({
   default: selector({
     key: `${BENEFIT_KEY}/default`,
     get: () => {
-      return {
-        _ids: ['1234', '2345'],
-        _values: {
-          '1234': { id: '1234', name: 'hajs' },
-          '2345': { id: '2345', name: 'auto' }
-        }
-      };
+      if (!LocalStorageProvider.hasValues(BENEFIT_KEY)) {
+        LocalStorageProvider.write(BENEFIT_KEY, emptyObject);
+      }
+      return LocalStorageProvider.read(BENEFIT_KEY);
     }
   })
 });

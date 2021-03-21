@@ -1,4 +1,5 @@
 import { atom, selector } from 'recoil';
+import { emptyObject, LocalStorageProvider } from './mockData';
 
 export interface IRawCompany {
   _ids: string[];
@@ -21,17 +22,10 @@ export const companyState = atom<IRawCompany>({
   default: selector({
     key: `${COMPANY_KEY}/default`,
     get: () => {
-      return {
-        _ids: ['1234'],
-        _values: {
-          '1234': {
-            id: '1234',
-            name: 'Foo inc.',
-            contact: 'fooinc@oo.com',
-            website: 'www.fooinc.com'
-          }
-        }
-      };
+      if (!LocalStorageProvider.hasValues(COMPANY_KEY)) {
+        LocalStorageProvider.write(COMPANY_KEY, emptyObject);
+      }
+      return LocalStorageProvider.read(COMPANY_KEY);
     }
   })
 });

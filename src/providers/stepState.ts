@@ -1,4 +1,5 @@
 import { atom, selector } from 'recoil';
+import { emptyObject, LocalStorageProvider } from './mockData';
 
 export interface IRawStep {
   _ids: string[];
@@ -20,13 +21,10 @@ export const stepState = atom<IRawStep>({
   default: selector({
     key: `${STEP_KEY}/default`,
     get: () => {
-      return {
-        _ids: ['1234', '2345'],
-        _values: {
-          '1234': { id: '1234', type: 'FIRST_TALK', when: '20.03.2021 14:00' },
-          '2345': { id: '2345', type: 'FIRST_TALK', when: '20.03.2021 14:00' }
-        }
-      };
+      if (!LocalStorageProvider.hasValues(STEP_KEY)) {
+        LocalStorageProvider.write(STEP_KEY, emptyObject);
+      }
+      return LocalStorageProvider.read(STEP_KEY);
     }
   })
 });

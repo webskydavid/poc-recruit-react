@@ -9,12 +9,14 @@ interface Props {
 
 const BenefitsBlock: FC<Props> = ({ title, data }) => {
   return (
-    <div>
-      <h4>{title}</h4>
-      {data.map((benefit, i) => (
-        <button key={i}>{benefit.name}</button>
-      ))}
-    </div>
+    <>
+      <h5>{title}</h5>
+      <div className="cell-salary__content">
+        {data.map((benefit) => (
+          <div key={benefit.id}>{benefit.name}</div>
+        ))}
+      </div>
+    </>
   );
 };
 

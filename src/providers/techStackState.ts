@@ -1,4 +1,5 @@
 import { atom, selector } from 'recoil';
+import { emptyObject, LocalStorageProvider } from './mockData';
 
 export interface IRawTechStack {
   _ids: string[];
@@ -19,13 +20,10 @@ export const techStackState = atom<IRawTechStack>({
   default: selector({
     key: `${TECH_STACK_KEY}/default`,
     get: () => {
-      return {
-        _ids: ['1234', '2345'],
-        _values: {
-          '1234': { id: '1234', name: 'Node' },
-          '2345': { id: '2345', name: 'JavaScript' }
-        }
-      };
+      if (!LocalStorageProvider.hasValues(TECH_STACK_KEY)) {
+        LocalStorageProvider.write(TECH_STACK_KEY, emptyObject);
+      }
+      return LocalStorageProvider.read(TECH_STACK_KEY);
     }
   })
 });

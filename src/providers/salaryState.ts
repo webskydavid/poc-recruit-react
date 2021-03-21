@@ -1,4 +1,5 @@
 import { atom, selector } from 'recoil';
+import { emptyObject, LocalStorageProvider } from './mockData';
 
 export interface IRawSalary {
   _ids: string[];
@@ -13,6 +14,7 @@ export interface ISalary {
   from: Number;
   to: Number;
   type: string;
+  currency: string;
   options?: {
     holidays: boolean;
     sickness: boolean;
@@ -26,27 +28,10 @@ export const salaryState = atom<IRawSalary>({
   default: selector({
     key: `${SALARY_KEY}/default`,
     get: () => {
-      return {
-        _ids: ['1234', '2345'],
-        _values: {
-          '1234': {
-            id: '1',
-            contractType: 'B2B',
-            from: 15000,
-            to: 18000,
-            type: 'GROSS',
-            options: { holidays: true, sickness: true }
-          },
-          '2345': {
-            id: '1',
-            contractType: 'B2B',
-            from: 15000,
-            to: 18000,
-            type: 'GROSS',
-            options: { holidays: true, sickness: true }
-          }
-        }
-      };
+      if (!LocalStorageProvider.hasValues(SALARY_KEY)) {
+        LocalStorageProvider.write(SALARY_KEY, emptyObject);
+      }
+      return LocalStorageProvider.read(SALARY_KEY);
     }
   })
 });

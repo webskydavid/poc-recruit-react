@@ -2,14 +2,19 @@ import { Formik, Form, Field, FieldArray } from 'formik';
 import { FC } from 'react';
 import { useHistory } from 'react-router';
 import { useSetRecoilState } from 'recoil';
-import { benefitState } from '../../providers/benefit';
-import { companyState } from '../../providers/company';
+import { benefitState, BENEFIT_KEY } from '../../providers/benefit';
+import { companyState, COMPANY_KEY } from '../../providers/company';
+import { mockData } from '../../providers/data';
 import { LocalStorageProvider } from '../../providers/mockData';
-import { recruiterState } from '../../providers/recruiter';
-import { IRawRecruitment, recruitmentState } from '../../providers/recruitment';
-import { salaryState } from '../../providers/salaryState';
-import { stepState } from '../../providers/stepState';
-import { techStackState } from '../../providers/techStackState';
+import { recruiterState, RECRUITER_KEY } from '../../providers/recruiter';
+import {
+  IRawRecruitment,
+  recruitmentState,
+  RECRUITMENT_KEY
+} from '../../providers/recruitment';
+import { salaryState, SALARY_KEY } from '../../providers/salaryState';
+import { stepState, STEP_KEY } from '../../providers/stepState';
+import { techStackState, TECH_STACK_KEY } from '../../providers/techStackState';
 import './form.css';
 
 const AddNewBlock: FC = () => {
@@ -22,31 +27,35 @@ const AddNewBlock: FC = () => {
   const setSalary = useSetRecoilState(salaryState);
   const setStep = useSetRecoilState(stepState);
 
-  const addValues = (data: any, func: any): string => {
+  const addValues = (data: any, func: any, key: string): string => {
     const id = Date.now().toString();
     func((obj: any) => {
-      return {
+      const newData = {
         _ids: [...obj._ids, id],
         _values: {
           ...obj._values,
           [id]: typeof data === 'object' ? { ...data, id } : data
         }
       };
+      LocalStorageProvider.write(key, newData);
+      return newData;
     });
     return id;
   };
 
-  const addArrayOfValues = (data: any, func: any): string[] => {
+  const addArrayOfValues = (data: any, func: any, key: string): string[] => {
     return data.map((val: any) => {
       const id = Date.now().toString();
       func((obj: any) => {
-        return {
+        const newData = {
           _ids: [...obj._ids, id],
           _values: {
             ...obj._values,
             [id]: typeof data === 'object' ? { ...val, id } : val
           }
         };
+        LocalStorageProvider.write(key, newData);
+        return newData;
       });
       return id;
     });
@@ -67,17 +76,21 @@ const AddNewBlock: FC = () => {
       note: '',
       hardware: [],
       level: [],
-      recruiter: addValues(values.recruiter, setRecruter),
-      company: addValues(values.company, setCompany),
-      benefits: addArrayOfValues(values.benefits, setBenefit),
-      tech_stack: addArrayOfValues(values.tech_stack, setTechStack),
-      salary: addArrayOfValues(values.salary, setSalary),
-      steps: addArrayOfValues(values.salary, setStep)
+      recruiter: addValues(values.recruiter, setRecruter, RECRUITER_KEY),
+      company: addValues(values.company, setCompany, COMPANY_KEY),
+      benefits: addArrayOfValues(values.benefits, setBenefit, BENEFIT_KEY),
+      tech_stack: addArrayOfValues(
+        values.tech_stack,
+        setTechStack,
+        TECH_STACK_KEY
+      ),
+      salary: addArrayOfValues(values.salary, setSalary, SALARY_KEY),
+      steps: addArrayOfValues(values.steps, setStep, STEP_KEY)
     };
 
     setRecrutiment((rec) => {
       const data = [...rec, { ...newRec }];
-      LocalStorageProvider.write('recruitmentList', data);
+      LocalStorageProvider.write(RECRUITMENT_KEY, data);
       return data;
     });
     history.push('/');
@@ -87,21 +100,22 @@ const AddNewBlock: FC = () => {
     <div className="form">
       <Formik
         initialValues={{
-          recruiter: {
-            name: '',
-            contact: '',
-            company: ''
-          },
-          steps: [],
-          company: {
-            name: '',
-            contact: '',
-            offer_link: '',
-            website: ''
-          },
-          tech_stack: [],
-          salary: [],
-          benefits: []
+          // recruiter: {
+          //   name: '',
+          //   contact: '',
+          //   company: ''
+          // },
+          // steps: [],
+          // company: {
+          //   name: '',
+          //   contact: '',
+          //   offer_link: '',
+          //   website: ''
+          // },
+          // tech_stack: [],
+          // salary: [],
+          // benefits: [],
+          ...mockData[0]
         }}
         onSubmit={handleSubmit}
       >
@@ -230,6 +244,7 @@ const AddNewBlock: FC = () => {
                               contractType: 'B2B',
                               from: 0,
                               to: 0,
+                              currency: 'PLN',
                               type: 'NET'
                             })
                           }
@@ -259,6 +274,19 @@ const AddNewBlock: FC = () => {
                             <div className="form__field">
                               <label htmlFor="name">Do</label>
                               <Field name={`salary.${index}.to`} />
+                            </div>
+                            <div className="form__field">
+                              <label htmlFor={`salary.${index}.currency`}>
+                                Typ
+                              </label>
+                              <Field
+                                as="select"
+                                name={`salary.${index}.currency`}
+                              >
+                                <option value="PLN">PLN</option>
+                                <option value="USD">USD</option>
+                                <option value="EUR">EUR</option>
+                              </Field>
                             </div>
                             <div className="form__field">
                               <label htmlFor={`salary.${index}.type`}>

@@ -11,6 +11,7 @@ import StepsBlock from './blocks/StepsBlock';
 
 import { getRecrutiments, LocalStorageProvider } from '../providers/mockData';
 import { recruitmentState } from '../providers/recruitment';
+import './blockList.css';
 
 const BlockList: FC = () => {
   const removeRecruitment = useSetRecoilState(recruitmentState);
@@ -33,11 +34,56 @@ const BlockList: FC = () => {
           </Link>
 
           <h1>Rekrutacje</h1>
-          {list.contents.length
-            ? list.contents.map((recruitment) => {
-                return (
-                  <div className="app__blocks" key={recruitment.id}>
-                    <button onClick={() => handleRemove(recruitment.id)}>
+          <div className="list">
+            {list.contents.length
+              ? list.contents.map((recruitment) => {
+                  console.log(recruitment);
+
+                  return (
+                    <div className="list__block" key={recruitment.id}>
+                      <div className="cell-recruiter">
+                        <RecruterBlock
+                          title="Kto rekrutuje"
+                          data={recruitment.recruiter}
+                        />
+                      </div>
+                      <div className="cell-company">
+                        <CompanyBlock
+                          title="Firma"
+                          data={recruitment.company}
+                        />
+                      </div>
+                      <div className="cell-salary">
+                        <SalaryBlock title="Płaca" data={recruitment.salary} />
+                      </div>
+                      <div className="cell-status">
+                        <h5>Status</h5>
+                      </div>
+                      <div className="cell-tech">
+                        <TechStackBlock
+                          title="Stack technologiczny"
+                          data={recruitment.tech_stack}
+                        />
+                      </div>
+                      <div className="cell-level">
+                        <h5>Level</h5>
+                      </div>
+                      <div className="cell-benefits">
+                        <BenefitsBlock
+                          title={'Benefity'}
+                          data={recruitment.benefits}
+                        />
+                      </div>
+                      <div className="cell-description"></div>
+                      <div className="cell-process">
+                        <StepsBlock
+                          title="Kroki rekrutacji"
+                          data={recruitment.steps}
+                        />
+                      </div>
+                      <div className="cell-expect">expect</div>
+
+                      {/* <button onClick={() => handleRemove(recruitment.id)}>
                       Usuń
                     </button>
                     <div className="block__row">
@@ -61,11 +107,12 @@ const BlockList: FC = () => {
                     <BenefitsBlock
                       title={'Benefity'}
                       data={recruitment.benefits}
-                    />
-                  </div>
-                );
-              })
-            : 'Brak rekrutacji!'}
+                    /> */}
+                    </div>
+                  );
+                })
+              : 'Brak rekrutacji!'}
+          </div>
         </>
       );
     case 'loading':

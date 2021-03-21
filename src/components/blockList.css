@@ -1,0 +1,80 @@
+.list {
+  display: grid;
+  gap: 20px;
+  grid-auto-flow: row;
+}
+
+.list__block {
+  display: grid;
+  gap: 10px;
+  justify-items: stretch;
+  grid-template-areas:
+    'recruiter company salary   salary   salary   status'
+    'recruiter company tech     tech     tech     description'
+    'level     level   benefits benefits benefits description'
+    'process   process process  expect   expect   expect';
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid green;
+}
+
+.list__block > div {
+  display: grid;
+  justify-items: flex-start;
+  background-color: rgb(219, 219, 219);
+}
+
+.list__block > div > h5 {
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.cell-recruiter {
+  grid-area: recruiter;
+  grid-template-rows: auto;
+  gap: 5px;
+}
+
+.cell-company {
+  grid-area: company;
+  grid-template-rows: auto;
+  gap: 5px;
+}
+
+.cell-salary {
+  grid-area: salary;
+  gap: 5px;
+}
+
+.cell-salary__content {
+  display: grid;
+  grid-auto-flow: column;
+}
+
+.cell-status {
+  grid-area: status;
+}
+
+.cell-level {
+  grid-area: level;
+}
+
+.cell-tech {
+  grid-area: tech;
+}
+
+.cell-benefits {
+  grid-area: benefits;
+}
+
+.cell-description {
+  grid-area: description;
+}
+
+.cell-process {
+  grid-area: process;
+}
+
+.cell-expect {
+  grid-area: expect;
+}

@@ -9,12 +9,14 @@ interface Props {
 
 const TechStackBlock: FC<Props> = ({ title, data }) => {
   return (
-    <div>
-      <h4>{title}</h4>
-      {data.map((tech) => (
-        <button key={tech.id}>{tech.name}</button>
-      ))}
-    </div>
+    <>
+      <h5>{title}</h5>
+      <div className="cell-salary__content">
+        {data.map((tech) => (
+          <div key={tech.id}>{tech.name}</div>
+        ))}
+      </div>
+    </>
   );
 };
 

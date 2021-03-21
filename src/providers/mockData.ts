@@ -2,11 +2,15 @@ import { selector } from 'recoil';
 import { benefitState } from './benefit';
 import { companyState } from './company';
 import { recruiterState } from './recruiter';
-import { IRecruitment, recruitmentState } from './recruitment';
+import { recruitmentState } from './recruitment';
 import { salaryState } from './salaryState';
 import { stepState } from './stepState';
 import { techStackState } from './techStackState';
 
+export const emptyObject = {
+  _ids: [],
+  _values: {}
+};
 export class LocalStorageProvider {
   static read = (key: string) => {
     if (localStorage.getItem(key) === null) {
@@ -27,12 +31,15 @@ export class LocalStorageProvider {
   static clear = (key: string) => {
     localStorage.clear();
   };
+
+  static hasValues = (key: string) => {
+    return localStorage.getItem(key) !== null;
+  };
 }
 
 export const getRecrutiments = selector({
   key: 'getRecrutiments',
   get: ({ get }) => {
-    const newRecruitmens: IRecruitment[] = [];
     const recruitments = get(recruitmentState);
     const companies = get(companyState);
     const recruiters = get(recruiterState);
