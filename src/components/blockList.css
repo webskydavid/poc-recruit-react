@@ -6,13 +6,15 @@
 
 .list__block {
   display: grid;
-  gap: 10px;
+
   justify-items: stretch;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 2fr;
   grid-template-areas:
     'recruiter company salary   salary   salary   status      status'
     'recruiter company tech     tech     tech     description description'
     'level     level   benefits benefits benefits description description'
     'process   process process  expect   expect   description description';
+  gap: 10px;
   padding: 10px 10px;
   border-radius: 10px;
   border-left: 10px solid green;
@@ -23,7 +25,6 @@
 .list__block > div {
   display: grid;
   justify-items: flex-start;
-  /* background-color: rgb(219, 219, 219); */
 }
 
 .list__block > div > h5 {
@@ -87,6 +88,7 @@
 .cell-description {
   grid-area: description;
   grid-template-rows: auto;
+  text-align: justify;
   gap: 5px;
 }
 
