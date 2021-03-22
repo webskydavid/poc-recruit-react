@@ -58,6 +58,7 @@ const BlockList: FC = () => {
                       </div>
                       <div className="cell-status">
                         <h5>Status</h5>
+                        <div>Pending</div>
                       </div>
                       <div className="cell-tech">
                         <TechStackBlock
@@ -67,6 +68,11 @@ const BlockList: FC = () => {
                       </div>
                       <div className="cell-level">
                         <h5>Level</h5>
+                        <div className="cell-level__content">
+                          <div>JUNIOR</div>
+                          <div>REGULAR</div>
+                          <div>SENIOR</div>
+                        </div>
                       </div>
                       <div className="cell-benefits">
                         <BenefitsBlock
@@ -74,14 +80,25 @@ const BlockList: FC = () => {
                           data={recruitment.benefits}
                         />
                       </div>
-                      <div className="cell-description"></div>
+                      <div className="cell-description">
+                        <h5>Description</h5>
+                        <span>
+                          Lorem ipsum dolor sit amet consectetur adipisicing
+                          elit. Consequatur aliquam magni animi suscipit rem
+                          facilis placeat corporis maxime eos vel aspernatur
+                          quia, tempora tempore. Ex dicta voluptatem qui eius
+                          quisquam.
+                        </span>
+                      </div>
                       <div className="cell-process">
                         <StepsBlock
                           title="Kroki rekrutacji"
                           data={recruitment.steps}
                         />
                       </div>
-                      <div className="cell-expect">expect</div>
+                      <div className="cell-expect">
+                        <h5>Oczekiwania finansowe</h5>
+                      </div>
 
                       {/* <button onClick={() => handleRemove(recruitment.id)}>
                       Usuń

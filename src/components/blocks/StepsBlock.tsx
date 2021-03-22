@@ -11,15 +11,17 @@ const StepsBlock: FC<Props> = ({ title, data }) => {
   console.log(data);
 
   return (
-    <div className="block">
-      <h4>{title}</h4>
-      {data.map((step) => (
-        <div key={step.type} className="block__steps">
-          <div>{step.type}</div>
-          <div>{step.when}</div>
-        </div>
-      ))}
-    </div>
+    <>
+      <h5>{title}</h5>
+      <div className="cell-salary__content">
+        {data.map((step) => (
+          <div key={step.type}>
+            <div>{step.type}</div>
+            <div>{step.when}</div>
+          </div>
+        ))}
+      </div>
+    </>
   );
 };
 

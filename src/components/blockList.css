@@ -9,23 +9,27 @@
   gap: 10px;
   justify-items: stretch;
   grid-template-areas:
-    'recruiter company salary   salary   salary   status'
-    'recruiter company tech     tech     tech     description'
-    'level     level   benefits benefits benefits description'
-    'process   process process  expect   expect   expect';
-  padding: 20px;
+    'recruiter company salary   salary   salary   status      status'
+    'recruiter company tech     tech     tech     description description'
+    'level     level   benefits benefits benefits description description'
+    'process   process process  expect   expect   description description';
+  padding: 10px 10px;
   border-radius: 10px;
-  border: 1px solid green;
+  border-left: 10px solid green;
+  -webkit-box-shadow: 0px 0px 15px -1px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 0px 15px -1px rgba(0, 0, 0, 0.3);
 }
 
 .list__block > div {
   display: grid;
   justify-items: flex-start;
-  background-color: rgb(219, 219, 219);
+  /* background-color: rgb(219, 219, 219); */
 }
 
 .list__block > div > h5 {
   font-size: 12px;
+  font-weight: 400;
+  color: #bdbdbd;
   text-transform: uppercase;
 }
 
@@ -53,28 +57,47 @@
 
 .cell-status {
   grid-area: status;
+  grid-template-rows: auto;
+  gap: 5px;
 }
 
 .cell-level {
   grid-area: level;
+  grid-template-rows: auto;
+  gap: 5px;
+}
+
+.cell-level__content {
+  display: grid;
+  grid-auto-flow: column;
 }
 
 .cell-tech {
   grid-area: tech;
+  grid-template-rows: auto;
+  gap: 5px;
 }
 
 .cell-benefits {
   grid-area: benefits;
+  grid-template-rows: auto;
+  gap: 5px;
 }
 
 .cell-description {
   grid-area: description;
+  grid-template-rows: auto;
+  gap: 5px;
 }
 
 .cell-process {
   grid-area: process;
+  grid-template-rows: auto;
+  gap: 5px;
 }
 
 .cell-expect {
   grid-area: expect;
+  grid-template-rows: auto;
+  gap: 5px;
 }
