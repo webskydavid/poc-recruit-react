@@ -90,7 +90,7 @@ const BlockList: FC = () => {
                           quisquam.
                         </span>
                       </div>
-                      <div className="cell-process">
+                      <div className="cell-steps">
                         <StepsBlock
                           title="Kroki rekrutacji"
                           data={recruitment.steps}

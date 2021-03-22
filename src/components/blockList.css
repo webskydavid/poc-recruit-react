@@ -6,7 +6,6 @@
 
 .list__block {
   display: grid;
-
   justify-items: stretch;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 2fr;
   grid-template-areas:
@@ -34,18 +33,21 @@
   text-transform: uppercase;
 }
 
+/* RECRUIT */
 .cell-recruiter {
   grid-area: recruiter;
   grid-template-rows: auto;
   gap: 5px;
 }
 
+/* COMPANY */
 .cell-company {
   grid-area: company;
   grid-template-rows: auto;
   gap: 5px;
 }
 
+/* SALARY */
 .cell-salary {
   grid-area: salary;
   gap: 5px;
@@ -54,14 +56,29 @@
 .cell-salary__content {
   display: grid;
   grid-auto-flow: column;
+
+  justify-self: stretch;
+  text-align: start;
 }
 
+.salary {
+  display: grid;
+  grid-template-columns: auto;
+}
+
+.salary__sufix {
+  display: grid;
+  grid-template-rows: auto;
+}
+
+/* STATUS */
 .cell-status {
   grid-area: status;
   grid-template-rows: auto;
   gap: 5px;
 }
 
+/* LEVEL */
 .cell-level {
   grid-area: level;
   grid-template-rows: auto;
@@ -73,18 +90,21 @@
   grid-auto-flow: column;
 }
 
+/* TECH */
 .cell-tech {
   grid-area: tech;
   grid-template-rows: auto;
   gap: 5px;
 }
 
+/* BENEFTIS */
 .cell-benefits {
   grid-area: benefits;
   grid-template-rows: auto;
   gap: 5px;
 }
 
+/* DESCRIPTION */
 .cell-description {
   grid-area: description;
   grid-template-rows: auto;
@@ -92,12 +112,35 @@
   gap: 5px;
 }
 
-.cell-process {
+/* STEPS */
+.cell-steps {
   grid-area: process;
   grid-template-rows: auto;
   gap: 5px;
 }
 
+.cell-steps__content {
+  display: grid;
+  grid-auto-flow: column;
+  justify-self: stretch;
+}
+
+.step {
+  display: grid;
+  text-align: start;
+  font-weight: 100;
+}
+
+.step > h4 {
+  font-weight: bold;
+}
+
+.step > div {
+  font-weight: 400;
+  font-size: 12px;
+}
+
+/* EXPECTATION */
 .cell-expect {
   grid-area: expect;
   grid-template-rows: auto;

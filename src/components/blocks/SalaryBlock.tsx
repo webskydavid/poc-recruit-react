@@ -17,12 +17,12 @@ const SalaryBlock: FC<Props> = ({ title, data }) => {
       <h5>Salary</h5>
       <div className="cell-salary__content">
         {data.map((salary, index) => (
-          <div key={index}>
-            <div>{contracts[salary.contractType]}</div>
-            <div>
+          <div key={index} className="salary">
+            <h4>{contracts[salary.contractType]}</h4>
+            <div className="salary__values">
               {salary.from} - {salary.to}
             </div>
-            <div>
+            <div className="salary__sufix">
               <span>{salary.type}</span>
               <span>{salary.currency}</span>
             </div>
